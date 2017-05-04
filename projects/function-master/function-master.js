@@ -89,3 +89,37 @@ function isFriend(name, object) {
         return false
     }
 }
+
+function nonFriends (name, list) {
+    var nonFriendsDump = [];
+    for (var x = 0; x < list.length; x++) {
+        if (!isFriend(name, list[x]) && list[x].name !== name) {
+           nonFriendsDump.push(list[x].name); 
+        }
+    }
+    return nonFriendsDump;
+}
+
+function updateObject(object, key, value) {
+    object[key] = value;
+    return object;
+}
+
+function removeProperties(object, array) {
+    for (var key in object) {
+        if (array.includes(key)) {
+            delete object[key];
+        }
+    }
+    return object;   
+    }
+    
+function dedup(array) {
+    let nonDups = [];
+    for(let x = 0; x < array.length; x++) {
+        if(!nonDups.includes(array[x])) {
+            nonDups.push(array[x]);
+        }
+    }
+    return nonDups;
+}
