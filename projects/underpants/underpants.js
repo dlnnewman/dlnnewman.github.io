@@ -29,7 +29,7 @@ window._ = {};
 _.identity = function(anything) {
     //assign function to variable
     return anything;
-}
+};
 
 /** _.typeOf()
 * Arguments:
@@ -61,7 +61,7 @@ _.typeOf = function(anything) {
     else {
         return typeof anything;   
     }
-}
+};
 
 /** _.first()
 * Arguments:
@@ -166,7 +166,7 @@ _.each = function(collection, action) {
             action(collection[key], key, collection);
         }
     }
-}
+};
 
 /** _.indexOf()
 * Arguments:
@@ -191,7 +191,7 @@ _.indexOf = function(array, val) {
             }
         }
     return -1;
-}
+};
 
 /** _.filter()
 * Arguments:
@@ -259,6 +259,11 @@ _.reject = function(array, action) {
 }
 */
 
+_.partition = function(array, action) {
+    var newArray = [];
+    newArray.push(_.filter(array, action), _.reject(array, action));
+    return newArray;
+};
 
 /** _.unique()
 * Arguments:
@@ -270,6 +275,15 @@ _.reject = function(array, action) {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array) {
+    var uniqueArray = [];
+    _.each(array, function(ell, x, arr) {
+        if (_.indexOf(uniqueArray, ell) === -1) {
+        uniqueArray.push(ell);
+    }
+});
+    return uniqueArray;
+};
 
 /** _.map()
 * Arguments:
@@ -306,6 +320,13 @@ _.map = function(collection, action) {
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property) {
+    var newPropArray = [];
+    _.map(array, function (ell, x, arr) {
+        newPropArray.push(ell[property]);
+    });
+    return newPropArray;
+};
 
 /** _.contains()
 * Arguments:
@@ -322,6 +343,9 @@ _.map = function(collection, action) {
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+_.contains = function(array, value) {
+    return _.indexOf(array, value) < 0 ? false : true;
+};
 
 /** _.every()
 * Arguments:
@@ -344,6 +368,23 @@ _.map = function(collection, action) {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(collection, action) {
+    var check = true;
+    _.each(collection, function (ell, x, arr) {
+    if (action) {
+        if (!action(ell, x, arr)) {
+                check = false;
+            }
+        }
+    
+    else {
+            if (ell === false) {
+                check = false;
+            }
+        }
+    });
+    return check;
+};
 
 /** _.some()
 * Arguments:
@@ -366,6 +407,23 @@ _.map = function(collection, action) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, action) {
+    var check = false;
+    _.each(collection, function (ell, x, arr) {
+    if (action) {
+        if (action(ell, x, arr)) {
+                check = true;
+            }
+    }
+    else {
+            if (ell === true) {
+                check = true;
+            }
+    console.log(ell);
+        }
+    });
+    return check;
+};
 
 /** _.reduce()
 * Arguments:
@@ -386,6 +444,16 @@ _.map = function(collection, action) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, action, seed) {
+      var prev = 0;
+      _.each(array, function(ell, x, arr){
+        if (seed < 0) {seed = array[0];}
+        if (typeof(seed) === "undefined") {seed = 1}
+        if (!prev) {prev = seed;}
+        prev = action(prev, ell, x);
+    });
+        return prev;
+};
 
 /** _.extend()
 * Arguments:
@@ -402,6 +470,14 @@ _.map = function(collection, action) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
+_.extend = function(objOne){
+    _.each(arguments, function(newObj) {
+        _.each(newObj, function(value, key) {
+            objOne[key] = value;
+        });
+    });
+return objOne;
+};
 
 // This is the proper way to end a javascript library
 }());
