@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="bower_components/lodash/lodash.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/site.css">
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/notes/notes.js"></script>
+        <script type="text/javascript" src="js/lib/spin.min.js"></script>
+        <script type="text/javascript" src="js/view/pacifier.js"></script>
+        <script type="text/javascript" src="js/products.js"></script>
+        <title>Product Project</title>
+    </head>
+    <body>
+        <div id="container" class="container">
+            <nav>
+                <h1>Product Project</h1>
+                <ul id='nav-list'></ul>
+            </nav>
+            
+            <main>
+                <div class="row row-max">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product Type <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                    </ul>
+                                </div> <!-- /btn-group --> 
+                            <input type="text" class="form-control" aria-label="...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" id="btn-real" type="button">Go!</button>
+                                </span>
+                        </div> <!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div>
+            </main>
+            
+            
+<!--onclick="searchFunc()"-->
+            
+        </div>
+        <script>
+            $(function () {
+                window.opspark.notes.show();
+            });
+        </script>
+    </body>
+</html>
