@@ -4,22 +4,24 @@ $(document).ready(function() {
         // YOUR CODE BELOW HERE //
         
         $('#section-bio').css('font-family', 'helvetica');
-        $('#section-quotes').css('font-family', 'tahoma').css('font-style', 'italic').css('background-color', '#e6e6fa').css('border-radius', '8px').css('padding', '10px');
-        
-        // uncomment this to inspect all available data; delete when done //
-        // console.log(data);
+        $('#section-quotes').css('font-family', 'tahoma')
+                            .css('font-style', 'italic')
+                            .css('background-color', '#e6e6fa')
+                            .css('border-radius', '8px')
+                            .css('padding','5px')
+                            .css('margin-bottom', '20px');
         
         // EXAMPLE: Looping over top rated recordings; replace with your code //
-        let topRated = data.discography.topRated;
-        let $topRated = $('#list-top-rated');
-        let recordings = data.discography.recordings;
-        let images = data.images.billy;
+        var topRated = data.discography.topRated;
+        var $topRated = $('#list-top-rated');
+        var recordings = data.discography.recordings;
+        var images = data.images.billy;
         
         
 // Creating topRated list items
 
         _.map(topRated, function(recording) {
-            let $list = $('<li>');
+            var $list = $('<li>');
                 $topRated.append(($list)
                     .attr('src', recording['art'])
                     .css('font-family', 'helvetica')
@@ -27,23 +29,23 @@ $(document).ready(function() {
                     .text(recording.title));
         });
         
-        let $sectionRecordings = $('<section>').attr('id', 'section-recordings');
+        var $sectionRecordings = $('<section>').attr('id', 'section-recordings');
             $sectionRecordings
                 .appendTo('#sidebar');
                 
-        let $sectionRecordingsHeader = $('<h2>').attr('class', 'section-recording-header');
+        var $sectionRecordingsHeader = $('<h2>').attr('class', 'section-recording-header');
             $sectionRecordingsHeader
                 .appendTo($sectionRecordings)
                 .text('Others');
         
-        let $listRecordings = $('<ul>').attr('id', 'list-recordings');
+        var $listRecordings = $('<ul>').attr('id', 'list-recordings');
             $listRecordings
                 .appendTo($sectionRecordings);
 
 // Create misc. recordings list items here
              
         _.map(recordings, function(recording) {
-            let $list = $('<li>')
+            var $list = $('<li>')
                 .attr('class', 'recordings')
                 .attr('src', recording['art'])
                 .css('font-family', 'helvetica')
@@ -56,19 +58,19 @@ $(document).ready(function() {
             $listRecordings.append($list);
         });
         
-        let $topRatedImageContainer = ($('<div>').attr('id', 'image-container-topRated').addClass('image-container'));
+        var $topRatedImageContainer = ($('<div>').attr('id', 'image-container-topRated').addClass('image-container'));
         $topRatedImageContainer.appendTo('#header-top-rated');
-        let $topRatedImage = $('<img>').attr('id', 'recording-image').attr('src', 'images/album/eastern-rebellion.jpg').addClass('image');
+        var $topRatedImage = $('<img>').attr('id', 'recording-image').attr('src', 'images/album/voice-in-the-night.jpg').addClass('image');
         $topRatedImage.appendTo($topRatedImageContainer);
         
-        let $recordingImageContainer = ($('<div>').attr('id', 'image-container-recording').addClass('image-container'));
+        var $recordingImageContainer = ($('<div>').attr('id', 'image-container-recording').addClass('image-container'));
         $recordingImageContainer.appendTo($sectionRecordingsHeader);
-        let $recordingImage = $('<img>').attr('id', 'recording-image').attr('src', 'images/billy/billy-1.jpg').addClass('image');
+        var $recordingImage = $('<img>').attr('id', 'recording-image').attr('src', 'images/album/eastern-rebellion.jpg').addClass('image');
         $recordingImage.appendTo($recordingImageContainer);
         
-        let $imageBilly = $('#image-container-billy');
+        var $imageBilly = $('#image-container-billy');
 
-        let $image = $('#image-billy');
+        var $image = $('#image-billy');
         $image.css('display', 'none');
         $image.fadeIn(3000);
 
@@ -87,7 +89,7 @@ $(document).ready(function() {
             $topRatedImage.attr('src', $(event.currentTarget).attr('src'));
     };
        
-        let $topRatedListItem = $('#list-top-rated li');
+        var $topRatedListItem = $('#list-top-rated li');
         $topRatedListItem
             .on('click', clickHandler2)
             .css('cursor', 'pointer');
@@ -97,7 +99,7 @@ $(document).ready(function() {
             $recordingImage.attr('src', $(event.currentTarget).attr('src'));
         };
         
-        let $recordingsListItem = $('#list-recordings li');
+        var $recordingsListItem = $('#list-recordings li');
             $recordingsListItem
                 .on('click', clickHandler3)
                 .css('cursor', 'pointer');
@@ -120,9 +122,17 @@ var createTable = function(riderDrumSet){
     return $table;
 };
 
-    let riderDrumSet = data.rider;
+    var riderDrumSet = data.rider;
 [{type: "John", desc: "Doe"}, {type: "Dick", desc: "Jones"}];
     createTable(riderDrumSet).appendTo("#section-praise");
+    
+    var $riderTable = $('#section-praise table');
+        $riderTable
+                .css('margin-bottom', '15px');
+    
+    var $riderHeader = $('<h3>').attr('id', 'rider-header');
+        $riderHeader.prependTo($riderTable)
+                    .text('Billy\'s Rider');
             
         // YOUR CODE ABOVE HERE //
     }) .fail(function() { console.log('getJSON on discography failed!'); });
